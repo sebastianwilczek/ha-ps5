@@ -1,0 +1,44 @@
+start_download:
+  fields:
+    device_id:
+      required: true
+      selector:
+        device:
+          integration: ps5
+    entitlement_id:
+      required: true
+      example: "HP7386-PPSA27158_00-0022337374597692"
+      selector:
+        text:
+
+cancel_download:
+  fields:
+    device_id:
+      required: true
+      selector:
+        device:
+          integration: ps5
+    entitlement_id:
+      required: true
+      example: "EP1210-CUSA03048_00-ETHANCARTERPS4EU"
+      selector:
+        text:
+
+get_library:
+  fields:
+    device_id:
+      required: true
+      selector:
+        device:
+          integration: ps5
+    platform:
+      required: false
+      selector:
+        select:
+          options:
+            - "PS4"
+            - "PS5"
+    installed:
+      required: false
+      selector:
+        boolean:

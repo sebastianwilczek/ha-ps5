@@ -1,0 +1,214 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connect your PlayStation account",
+        "description": "1. Open a **private/incognito** browser window and sign in at playstation.com.\n2. In the same window, open {npsso_url}\n3. Copy **everything** shown there (a short JSON text containing \"npsso\" and \"expires_in\") and paste it below. The 64-character NPSSO value alone also works.\n4. Close the window **without signing out**: signing out invalidates the NPSSO.",
+        "data": {
+          "npsso": "NPSSO"
+        },
+        "data_description": {
+          "npsso": "The JSON shown at the NPSSO page, or just the 64-character NPSSO value."
+        }
+      },
+      "select_console": {
+        "title": "Select your PS5",
+        "data": {
+          "console": "Console"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Enter a new NPSSO",
+        "description": "The NPSSO for {console} expired or was invalidated.\n\n1. Open a **private/incognito** browser window and sign in at playstation.com with the same account.\n2. In the same window, open {npsso_url}\n3. Copy everything shown there and paste it below.\n4. Close the window **without signing out**.",
+        "data": {
+          "npsso": "NPSSO"
+        },
+        "data_description": {
+          "npsso": "The JSON shown at the NPSSO page, or just the 64-character NPSSO value."
+        }
+      },
+      "reconfigure": {
+        "title": "Select your PS5 again",
+        "description": "Currently selected: {console}. Pick the console again, for example after renaming it.",
+        "data": {
+          "console": "Console"
+        }
+      }
+    },
+    "error": {
+      "invalid_npsso": "The NPSSO is invalid or expired. Copy a fresh one.",
+      "cannot_connect": "Failed to connect to PlayStation Network. Try again later.",
+      "no_ps5": "No PS5 was found on this account.",
+      "unknown": "[%key:common::config_flow::error::unknown%]"
+    },
+    "abort": {
+      "already_configured": "[%key:common::config_flow::abort::already_configured_account%]",
+      "duplicate_console_names": "Several consoles on this account share the same name. Give each PS5 a unique name in its settings and try again.",
+      "wrong_account": "The NPSSO belongs to a different PlayStation account than this entry.",
+      "reauth_successful": "[%key:common::config_flow::abort::reauth_successful%]",
+      "reconfigure_successful": "[%key:common::config_flow::abort::reconfigure_successful%]",
+      "reauth_required": "The stored credentials no longer work. Re-authenticate first.",
+      "cannot_connect": "Failed to connect to PlayStation Network. Try again later.",
+      "no_ps5": "No PS5 was found on this account.",
+      "unknown": "[%key:common::config_flow::error::unknown%]"
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "downloading": {
+        "name": "Downloading"
+      }
+    },
+    "button": {
+      "download_selected": {
+        "name": "Download selected game"
+      },
+      "cancel_download": {
+        "name": "Cancel download"
+      },
+      "refresh_library": {
+        "name": "Refresh library"
+      }
+    },
+    "event": {
+      "download": {
+        "name": "Download",
+        "state_attributes": {
+          "event_type": {
+            "state": {
+              "started": "Started",
+              "completed": "Completed",
+              "cancelled": "Cancelled"
+            }
+          }
+        }
+      }
+    },
+    "select": {
+      "game": {
+        "name": "Game"
+      }
+    },
+    "sensor": {
+      "installed_titles": {
+        "name": "Installed titles"
+      },
+      "storage_used": {
+        "name": "Storage used"
+      },
+      "download_queue": {
+        "name": "Download queue"
+      },
+      "download_progress": {
+        "name": "Download progress"
+      },
+      "download_remaining": {
+        "name": "Download time remaining"
+      }
+    }
+  },
+  "exceptions": {
+    "not_downloadable": {
+      "message": "{entitlement_id} is not a downloadable title of this account's library."
+    },
+    "not_in_queue": {
+      "message": "{entitlement_id} is not in the download queue."
+    },
+    "auth_failed": {
+      "message": "PlayStation Network authentication failed. Re-authenticate the integration."
+    },
+    "write_rejected": {
+      "message": "Sony rejected the request (errorCode {error_code}, reasonCode {reason_code})."
+    },
+    "api_changed": {
+      "message": "Sony no longer accepts the {operation} request. The integration needs an update."
+    },
+    "rate_limited": {
+      "message": "Sony is rate limiting requests. Try again in {seconds} seconds."
+    },
+    "console_not_found": {
+      "message": "The console {console} was not found on this account."
+    },
+    "api_error": {
+      "message": "Sony returned an error: {error} {details}"
+    },
+    "request_failed": {
+      "message": "The request to Sony failed ({error}). It may or may not have been executed; check the download queue before trying again."
+    },
+    "invalid_device": {
+      "message": "Device {device_id} is not a PS5 of this integration."
+    },
+    "entry_not_loaded": {
+      "message": "The PS5 integration entry for this device is not loaded."
+    }
+  },
+  "issues": {
+    "npsso_expiring": {
+      "title": "PlayStation NPSSO for {console} expires soon",
+      "fix_flow": {
+        "step": {
+          "confirm": {
+            "title": "Enter a new NPSSO",
+            "description": "The NPSSO for {console} expires on {expires}. After that, the integration stops working until you enter a new one.\n\nSubmit to start re-authentication, then sign in at playstation.com in a private/incognito window, open {npsso_url}, copy everything shown and paste it. Close the window without signing out."
+          }
+        }
+      }
+    },
+    "console_not_found": {
+      "title": "PS5 {console} not found",
+      "description": "The console {console} is no longer on this PlayStation account, or it was renamed. Open the PS5 integration and use **Reconfigure** to select it again."
+    },
+    "api_changed": {
+      "title": "PlayStation API changed ({operation})",
+      "description": "Sony no longer accepts the {operation} request (persisted query not found). Sony changed its website and the integration needs an update. The operation is disabled until Home Assistant restarts."
+    }
+  },
+  "services": {
+    "start_download": {
+      "name": "Start download",
+      "description": "Sends a purchased title to the PS5's download queue.",
+      "fields": {
+        "device_id": {
+          "name": "Console",
+          "description": "The PS5 to download to."
+        },
+        "entitlement_id": {
+          "name": "Entitlement ID",
+          "description": "The entitlement ID of the title (see the get library action)."
+        }
+      }
+    },
+    "cancel_download": {
+      "name": "Cancel download",
+      "description": "Removes a title from the PS5's download queue.",
+      "fields": {
+        "device_id": {
+          "name": "Console",
+          "description": "The PS5 whose queue to change."
+        },
+        "entitlement_id": {
+          "name": "Entitlement ID",
+          "description": "The entitlement ID of the queued title."
+        }
+      }
+    },
+    "get_library": {
+      "name": "Get library",
+      "description": "Returns the purchased library.",
+      "fields": {
+        "device_id": {
+          "name": "Console",
+          "description": "The PS5 used to determine which titles are installed."
+        },
+        "platform": {
+          "name": "Platform",
+          "description": "Only return titles of this platform."
+        },
+        "installed": {
+          "name": "Installed",
+          "description": "Only return installed (true) or not installed (false) titles."
+        }
+      }
+    }
+  }
+}

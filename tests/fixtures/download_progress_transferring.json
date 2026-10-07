@@ -1,0 +1,1 @@
+{"data":{"downloadProgressRetrieve":{"__typename":"CanDownloadProgressDetail","commandId":"c46dcccd-2279-41ed-bc2e-85f82ee2e857","downloadedSize":96337920,"playableSize":4434624512,"pollInterval":10,"remainingTime":168,"status":"transferring","totalSize":4434624512}}}

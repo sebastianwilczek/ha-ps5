@@ -1,0 +1,61 @@
+{
+  "entity": {
+    "binary_sensor": {
+      "downloading": {
+        "default": "mdi:download-off",
+        "state": {
+          "on": "mdi:download"
+        }
+      }
+    },
+    "button": {
+      "download_selected": {
+        "default": "mdi:download"
+      },
+      "cancel_download": {
+        "default": "mdi:download-off"
+      },
+      "refresh_library": {
+        "default": "mdi:refresh"
+      }
+    },
+    "event": {
+      "download": {
+        "default": "mdi:download-circle"
+      }
+    },
+    "select": {
+      "game": {
+        "default": "mdi:gamepad-variant"
+      }
+    },
+    "sensor": {
+      "installed_titles": {
+        "default": "mdi:sony-playstation"
+      },
+      "storage_used": {
+        "default": "mdi:harddisk"
+      },
+      "download_queue": {
+        "default": "mdi:tray-full"
+      },
+      "download_progress": {
+        "default": "mdi:progress-download"
+      },
+      "download_remaining": {
+        "default": "mdi:timer-sand"
+      }
+    }
+  },
+  "services": {
+    "start_download": {
+      "service": "mdi:download"
+    },
+    "cancel_download": {
+      "service": "mdi:download-off"
+    },
+    "get_library": {
+      "service": "mdi:bookshelf"
+    }
+  }
+}
