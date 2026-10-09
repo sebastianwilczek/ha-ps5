@@ -1,5 +1,9 @@
 # PS5 for Home Assistant
 
+<img width="1680" height="1050" alt="Screenshot 2026-10-09 at 15 55 29" src="https://github.com/user-attachments/assets/1777feab-dcd3-475c-abbc-70a058aff5d4" />
+
+<img width="1680" height="1050" alt="Screenshot 2026-10-09 at 15 55 42" src="https://github.com/user-attachments/assets/a382100c-d32c-4d43-913d-2d2e7a36d39c" />
+
 An unofficial Home Assistant custom integration that uses PlayStation's web API to show your PS5's installed titles, your purchased library and the remote-download queue with progress. You can also start and cancel remote downloads.
 
 > **Disclaimer:** This project is unofficial and is not affiliated with or endorsed by Sony Interactive Entertainment. It uses PlayStation's private web API with the PlayStation app's public client credentials (as the [`psn-api`](https://github.com/achievements-app/psn-api) project does). Remote downloads are write actions on your account. **Use at your own risk.**
